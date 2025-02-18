@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ChatHomeComponent } from './chat-home.component';
+import {ChatHomeComponent} from './chat-home.component';
+import {provideNoopAnimations} from '@angular/platform-browser/animations';
 
 describe('ChatHomeComponent', () => {
   let component: ChatHomeComponent;
@@ -8,9 +9,14 @@ describe('ChatHomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatHomeComponent]
+      imports: [
+        ChatHomeComponent
+      ],
+      providers: [
+        provideNoopAnimations(),
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(ChatHomeComponent);
     component = fixture.componentInstance;

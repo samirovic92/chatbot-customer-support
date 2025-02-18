@@ -1,4 +1,22 @@
 <div class="flex-center">
+  <div class="container">
+    <div class="messages">
 
-  <p>chat-messages works!</p>
+      <div class="message-header">
+        <h2>{{ username }}</h2>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="chat-area">
+        @for (message of messages; track message.content) {
+          <div class="chat-bubble" [class.user]="message.sender === 'user'" [class.bot]="message.sender === 'bot'">
+            {{ message.content }}
+            <span class="chat-date">
+                {{ message.timestamp | date: "dd MMM yyyy 'at' hh:mm a" }}
+              </span>
+          </div>
+        }
+      </div>
+    </div>
+
+  </div>
 </div>

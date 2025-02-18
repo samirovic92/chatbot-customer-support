@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatInputComponent } from './chat-input.component';
+import {provideNoopAnimations} from '@angular/platform-browser/animations';
 
 describe('ChatInputComponent', () => {
   let component: ChatInputComponent;
@@ -8,7 +9,10 @@ describe('ChatInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatInputComponent]
+      imports: [ChatInputComponent],
+      providers: [
+        provideNoopAnimations(),
+      ]
     })
     .compileComponents();
 

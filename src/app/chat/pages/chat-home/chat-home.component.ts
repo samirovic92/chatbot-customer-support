@@ -6,7 +6,7 @@ import {ChatMessagesComponent} from '../../components/chat-messages/chat-message
 @Component({
   selector: 'chat-home',
   templateUrl: './chat-home.component.html',
-  styleUrl: './chat-home.component.css',
+  styleUrl: './chat-home.component.scss',
   standalone: true,
   imports: [
     ChatStarterComponent,
