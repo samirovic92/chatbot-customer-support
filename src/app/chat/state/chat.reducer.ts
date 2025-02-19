@@ -1,6 +1,6 @@
 import {createReducer, on} from '@ngrx/store';
 import {initialChatState} from './chat.state';
-import {loadUser, receiveMessage, receiveMessageError, sendMessage} from './chat.actions';
+import {clearChat, loadUser, receiveMessage, receiveMessageError, sendMessage} from './chat.actions';
 import {SenderType} from '../models/sender-type';
 
 
@@ -51,6 +51,13 @@ export const chatReducer = createReducer(
         }
       ]
     }
-  })
+  }),
+  on(clearChat, (currentState) => {
+    return {
+      ...currentState,
+      username: null,
+      messages: []
+    }
+  }),
 )
 

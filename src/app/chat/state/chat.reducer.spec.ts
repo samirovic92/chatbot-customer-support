@@ -1,5 +1,5 @@
 import {chatReducer} from './chat.reducer';
-import {loadUser, receiveMessage, receiveMessageError, sendMessage} from './chat.actions';
+import {clearChat, loadUser, receiveMessage, receiveMessageError, sendMessage} from './chat.actions';
 import {ChatState} from './chat.state';
 import {SenderType} from '../models/sender-type';
 import {Message} from '../models/message';
@@ -48,6 +48,16 @@ describe('Chat reducer', () => {
       timestamp: new Date()
     };
     expect(newState.messages).toEqual([expectedMessage]);
+  });
+
+  it('should clear chat history', () => {
+    const initialState: ChatState = {
+      username: null,
+      messages: [{sender: SenderType.USER, content: 'lorem message', timestamp: new Date() }]
+    };
+    const newState = chatReducer(initialState, clearChat());
+    expect(newState.messages).toEqual([]);
+    expect(newState.username).toEqual(null);
   });
 });
 

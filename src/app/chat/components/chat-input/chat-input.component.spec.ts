@@ -6,7 +6,7 @@ import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {AppState} from '../../../core/store/AppState';
 import {initialChatState} from '../../state/chat.state';
 import {By} from '@angular/platform-browser';
-import {loadUser, sendMessage} from '../../state/chat.actions';
+import {clearChat, loadUser, sendMessage} from '../../state/chat.actions';
 
 describe('ChatInputComponent', () => {
   let component: ChatInputComponent;
@@ -52,5 +52,12 @@ describe('ChatInputComponent', () => {
     sendMessageBtn.triggerEventHandler('click',{});
     expect(store.dispatch).toHaveBeenCalledWith(sendMessage({userMessage: 'Hi , I need help'}));
     expect(component.messageFormControl.value).toBeNull();
+  });
+
+  it('should clear chat history ', () => {
+    spyOn(store, 'dispatch');
+    const clearMessageBtn = fixture.debugElement.query(By.css('.btn-reset-message'));
+    clearMessageBtn.triggerEventHandler('click',{});
+    expect(store.dispatch).toHaveBeenCalledWith(clearChat());
   });
 });

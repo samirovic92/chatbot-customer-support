@@ -17,3 +17,7 @@ export const receiveMessage = createAction(
 export const receiveMessageError = createAction(
   '[Chat] receive bot message error', props<{ errorMessage: string }>()
 );
+
+export const clearChat = createAction(
+  '[Chat] clear chat'
+);
