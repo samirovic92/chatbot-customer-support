@@ -6,5 +6,13 @@
 .input-area {
   display: flex;
   width: 50%;
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+
+.btn-reset-message {
+  margin-left: 5px;
 }
 
