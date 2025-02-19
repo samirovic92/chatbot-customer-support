@@ -20,8 +20,10 @@
 
 .chat-area {
   display: flex;
+  height: 90%;
   width: 100%;
   flex-direction: column;
+  overflow: auto;
 }
 
 
