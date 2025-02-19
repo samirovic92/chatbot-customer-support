@@ -4,17 +4,27 @@ import {ChatMessagesComponent} from './chat-messages.component';
 import {By} from '@angular/platform-browser';
 import {Message} from '../../models/message';
 import {SenderType} from '../../models/sender-type';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {AppState} from '../../../core/store/AppState';
+import {initialChatState} from '../../state/chat.state';
+import {selectUserName} from '../../state/hat.selectors';
 
 describe('ChatMessagesComponent', () => {
   let component: ChatMessagesComponent;
   let fixture: ComponentFixture<ChatMessagesComponent>;
+  let store: MockStore<AppState>;
+  let initialState: AppState = {chat: initialChatState};
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatMessagesComponent]
+      imports: [ChatMessagesComponent],
+      providers: [
+        provideMockStore({initialState})
+      ]
     })
       .compileComponents();
 
+    store = TestBed.inject(MockStore);
     fixture = TestBed.createComponent(ChatMessagesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -22,6 +32,16 @@ describe('ChatMessagesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the username', () =>{
+    store.overrideSelector(selectUserName, 'user-1');
+    fixture.destroy();
+    fixture = TestBed.createComponent(ChatMessagesComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    const usernameElement = fixture.debugElement.query(By.css('.username'));
+    expect(usernameElement.nativeElement.textContent.trim()).toEqual('user-1');
   });
 
   it('should display the user message with date', () => {
@@ -43,4 +63,5 @@ describe('ChatMessagesComponent', () => {
     expect(botMessageElements[0].nativeElement.textContent.trim())
       .toEqual("Test bot message  18 Feb 2025 at 12:00 PM");
   });
+
 });

@@ -1,8 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDivider} from '@angular/material/divider';
 import {Message} from '../../models/message';
-import {SenderType} from '../../models/sender-type';
-import {DatePipe} from '@angular/common';
+import {AsyncPipe, DatePipe} from '@angular/common';
+import {Store} from '@ngrx/store';
+import {AppState} from '../../../core/store/AppState';
+import {selectUserName} from '../../state/hat.selectors';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'chat-messages',
@@ -10,12 +13,18 @@ import {DatePipe} from '@angular/common';
   styleUrl: './chat-messages.component.scss',
   imports: [
     MatDivider,
-    DatePipe
+    DatePipe,
+    AsyncPipe
   ],
   standalone: true
 })
 export class ChatMessagesComponent {
-  username: string = 'Samir';
+  username$: Observable<string | null>;
   messages: Message[] = [];
+
+  constructor(private readonly store: Store<AppState>) {
+    this.username$ = this.store.select(selectUserName)
+  }
+
 
 }

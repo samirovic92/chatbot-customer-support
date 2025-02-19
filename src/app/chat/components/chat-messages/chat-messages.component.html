@@ -3,7 +3,7 @@
     <div class="messages">
 
       <div class="message-header">
-        <h2>{{ username }}</h2>
+        <h2 class="username">{{ username$ | async}}</h2>
       </div>
       <mat-divider></mat-divider>
       <div class="chat-area">

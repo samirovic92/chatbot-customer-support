@@ -1,7 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ChatStarterComponent} from '../../components/chat-starter/chat-starter.component';
 import {ChatInputComponent} from '../../components/chat-input/chat-input.component';
 import {ChatMessagesComponent} from '../../components/chat-messages/chat-messages.component';
+import {Store} from '@ngrx/store';
+import {selectUserName} from '../../state/hat.selectors';
+import {AppState} from '../../../core/store/AppState';
+import {AsyncPipe} from '@angular/common';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'chat-home',
@@ -11,9 +16,15 @@ import {ChatMessagesComponent} from '../../components/chat-messages/chat-message
   imports: [
     ChatStarterComponent,
     ChatInputComponent,
-    ChatMessagesComponent
+    ChatMessagesComponent,
+    AsyncPipe
   ]
 })
 export class ChatHomeComponent {
+  username$: Observable<string | null>;
+
+  constructor(private store: Store<AppState>) {
+    this.username$ = this.store.select(selectUserName);
+  }
 
 }

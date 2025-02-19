@@ -5,9 +5,12 @@
 <div class="flex-center">
 
   <mat-form-field appearance="outline" class="name-form">
-    <input matInput placeholder="Your name"/>
+    <input matInput placeholder="Your name" [formControl]="usernameFormControl"/>
 
-    <button mat-icon-button matSuffix>
+    <button mat-icon-button matSuffix
+            class="btn-start"
+            (click)="startConversation()"
+            [disabled]="disableStartConversation()">
       <mat-icon>chat_bubble</mat-icon>
     </button>
   </mat-form-field>

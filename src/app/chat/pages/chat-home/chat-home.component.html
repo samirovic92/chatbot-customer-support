@@ -1,7 +1,9 @@
 <div>
 
-  <chat-starter></chat-starter>
-  <chat-messages></chat-messages>
-  <chat-input></chat-input>
-
+  @if (!(username$ | async)) {
+    <chat-starter></chat-starter>
+  } @else {
+    <chat-messages></chat-messages>
+    <chat-input></chat-input>
+  }
 </div>
