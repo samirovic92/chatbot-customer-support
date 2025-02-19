@@ -13,3 +13,8 @@ export const selectMessages = createSelector(
   selectChatState,
   (state) => state.messages
 );
+
+export const selectIsLoading = createSelector(
+  selectChatState,
+  (state) => state.isLoading
+);

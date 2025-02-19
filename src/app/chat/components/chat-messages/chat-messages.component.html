@@ -15,7 +15,12 @@
               </span>
           </div>
         }
+        @if ((isLoading$ | async)) {
+          <chat-loader></chat-loader>
+        }
+
       </div>
+
     </div>
 
   </div>

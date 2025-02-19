@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ChatStarterComponent} from '../../components/chat-starter/chat-starter.component';
 import {ChatInputComponent} from '../../components/chat-input/chat-input.component';
 import {ChatMessagesComponent} from '../../components/chat-messages/chat-messages.component';

@@ -22,7 +22,8 @@ export const chatReducer = createReducer(
             content: userMessage,
             timestamp: new Date()
           }
-        ]
+        ],
+        isLoading: true
       }
     }
   ),
@@ -36,7 +37,8 @@ export const chatReducer = createReducer(
           content: botMessage,
           timestamp: new Date()
         }
-      ]
+      ],
+      isLoading: false,
     }
   }),
   on(receiveMessageError, (currentState,{errorMessage}) => {
@@ -49,14 +51,16 @@ export const chatReducer = createReducer(
           content: errorMessage,
           timestamp: new Date()
         }
-      ]
+      ],
+      isLoading: false,
     }
   }),
   on(clearChat, (currentState) => {
     return {
       ...currentState,
       username: null,
-      messages: []
+      messages: [],
+      isLoading: false
     }
   }),
 )

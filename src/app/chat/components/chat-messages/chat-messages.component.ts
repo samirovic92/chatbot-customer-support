@@ -4,8 +4,9 @@ import {Message} from '../../models/message';
 import {AsyncPipe, DatePipe} from '@angular/common';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/AppState';
-import {selectMessages, selectUserName} from '../../state/chat.selectors';
+import {selectIsLoading, selectMessages, selectUserName} from '../../state/chat.selectors';
 import {Observable} from 'rxjs';
+import {ChatLoaderComponent} from '../chat-loader/chat-loader.component';
 
 @Component({
   selector: 'chat-messages',
@@ -14,17 +15,20 @@ import {Observable} from 'rxjs';
   imports: [
     MatDivider,
     DatePipe,
-    AsyncPipe
+    AsyncPipe,
+    ChatLoaderComponent
   ],
   standalone: true
 })
 export class ChatMessagesComponent {
   username$: Observable<string | null>;
   messages$: Observable<Message[]>;
+  isLoading$: Observable<boolean>;
 
   constructor(private readonly store: Store<AppState>) {
     this.username$ = this.store.select(selectUserName);
     this.messages$ = this.store.select(selectMessages);
+    this.isLoading$ = this.store.select(selectIsLoading)
   }
 
 

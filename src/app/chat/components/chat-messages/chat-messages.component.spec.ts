@@ -65,4 +65,18 @@ describe('ChatMessagesComponent', () => {
       .toEqual("Test bot message  18 Feb 2025 at 12:00 PM");
   });
 
+  it('should show loader', () => {
+    component.isLoading$ = of(true);
+    fixture.detectChanges();
+    const chatLoaderElement = fixture.debugElement.query(By.css('chat-loader'));
+    expect(chatLoaderElement).not.toBeNull();
+  });
+
+  it('should hide loader', () => {
+    component.isLoading$ = of(false);
+    fixture.detectChanges();
+    const chatLoaderElement = fixture.debugElement.query(By.css('chat-loader'));
+    expect(chatLoaderElement).toBeNull();
+  });
+
 });

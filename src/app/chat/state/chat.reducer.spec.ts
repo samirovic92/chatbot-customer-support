@@ -9,7 +9,8 @@ describe('Chat reducer', () => {
   it('should load username', () => {
     const initialState: ChatState = {
       username: null,
-      messages: []
+      messages: [],
+      isLoading: false
     };
     const newState = chatReducer(initialState, loadUser({username: 'user-1'}));
     expect(newState.username).toEqual('user-1')
@@ -18,7 +19,8 @@ describe('Chat reducer', () => {
   it('should send user message', () => {
     const initialState: ChatState = {
       username: null,
-      messages: []
+      messages: [],
+      isLoading: false
     };
     const newState = chatReducer(initialState, sendMessage({userMessage: 'lorem message'}));
     const expectedMessage: Message = {sender: SenderType.USER, content: 'lorem message', timestamp: new Date() };
@@ -28,7 +30,8 @@ describe('Chat reducer', () => {
   it('should receive bot message', () => {
     const initialState: ChatState = {
       username: null,
-      messages: []
+      messages: [],
+      isLoading: false
     };
     const newState = chatReducer(initialState, receiveMessage({botMessage: 'lorem message bot'}));
     const expectedMessage: Message = {sender: SenderType.BOT, content: 'lorem message bot', timestamp: new Date() };
@@ -38,7 +41,8 @@ describe('Chat reducer', () => {
   it('should handle bot error', () => {
     const initialState: ChatState = {
       username: null,
-      messages: []
+      messages: [],
+      isLoading: false
     };
     const errorMessage = "bot Error message";
     const newState = chatReducer(initialState, receiveMessageError({errorMessage: errorMessage}));
@@ -53,7 +57,8 @@ describe('Chat reducer', () => {
   it('should clear chat history', () => {
     const initialState: ChatState = {
       username: null,
-      messages: [{sender: SenderType.USER, content: 'lorem message', timestamp: new Date() }]
+      messages: [{sender: SenderType.USER, content: 'lorem message', timestamp: new Date() }],
+      isLoading: false
     };
     const newState = chatReducer(initialState, clearChat());
     expect(newState.messages).toEqual([]);
