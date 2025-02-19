@@ -8,3 +8,8 @@ export const selectUserName = createSelector(
   selectChatState,
   (state) => state.username
 );
+
+export const selectMessages = createSelector(
+  selectChatState,
+  (state) => state.messages
+);

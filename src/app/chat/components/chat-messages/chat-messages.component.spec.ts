@@ -7,7 +7,8 @@ import {SenderType} from '../../models/sender-type';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {AppState} from '../../../core/store/AppState';
 import {initialChatState} from '../../state/chat.state';
-import {selectUserName} from '../../state/hat.selectors';
+import {selectUserName} from '../../state/chat.selectors';
+import {of} from 'rxjs';
 
 describe('ChatMessagesComponent', () => {
   let component: ChatMessagesComponent;
@@ -47,7 +48,7 @@ describe('ChatMessagesComponent', () => {
   it('should display the user message with date', () => {
     const currentDate = new Date('2025-02-18T12:00:00');
     const message: Message = {sender: SenderType.USER, content: "Test user message", timestamp: currentDate};
-    component.messages = [message];
+    component.messages$ = of([message]);
     fixture.detectChanges();
     const userMessageElements = fixture.debugElement.queryAll(By.css('.chat-bubble'));
     expect(userMessageElements[0].nativeElement.textContent.trim())
@@ -57,7 +58,7 @@ describe('ChatMessagesComponent', () => {
   it('should display the bot message with date', () => {
     const currentDate = new Date('2025-02-18T12:00:00');
     const message: Message = {sender: SenderType.BOT, content: "Test bot message", timestamp: currentDate};
-    component.messages = [message];
+    component.messages$ = of([message]);
     fixture.detectChanges();
     const botMessageElements = fixture.debugElement.queryAll(By.css('.chat-bubble'));
     expect(botMessageElements[0].nativeElement.textContent.trim())

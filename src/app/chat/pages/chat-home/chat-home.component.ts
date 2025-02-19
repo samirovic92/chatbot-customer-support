@@ -3,10 +3,10 @@ import {ChatStarterComponent} from '../../components/chat-starter/chat-starter.c
 import {ChatInputComponent} from '../../components/chat-input/chat-input.component';
 import {ChatMessagesComponent} from '../../components/chat-messages/chat-messages.component';
 import {Store} from '@ngrx/store';
-import {selectUserName} from '../../state/hat.selectors';
+import {selectUserName} from '../../state/chat.selectors';
 import {AppState} from '../../../core/store/AppState';
 import {AsyncPipe} from '@angular/common';
-import {Observable, of} from 'rxjs';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'chat-home',

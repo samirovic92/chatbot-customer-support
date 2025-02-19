@@ -7,6 +7,7 @@ import {provideStore} from '@ngrx/store';
 import {provideEffects} from '@ngrx/effects';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {appReducers} from './core/store/appReducers';
+import * as chatEffects from './chat/state/chat.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideNoopAnimations(),
     provideStore(appReducers),
-    provideEffects(),
+    provideEffects(chatEffects),
     provideStoreDevtools({
       maxAge: 25,
       logOnly: !isDevMode()

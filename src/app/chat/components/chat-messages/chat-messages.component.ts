@@ -4,7 +4,7 @@ import {Message} from '../../models/message';
 import {AsyncPipe, DatePipe} from '@angular/common';
 import {Store} from '@ngrx/store';
 import {AppState} from '../../../core/store/AppState';
-import {selectUserName} from '../../state/hat.selectors';
+import {selectMessages, selectUserName} from '../../state/chat.selectors';
 import {Observable} from 'rxjs';
 
 @Component({
@@ -20,10 +20,11 @@ import {Observable} from 'rxjs';
 })
 export class ChatMessagesComponent {
   username$: Observable<string | null>;
-  messages: Message[] = [];
+  messages$: Observable<Message[]>;
 
   constructor(private readonly store: Store<AppState>) {
-    this.username$ = this.store.select(selectUserName)
+    this.username$ = this.store.select(selectUserName);
+    this.messages$ = this.store.select(selectMessages);
   }
 
 

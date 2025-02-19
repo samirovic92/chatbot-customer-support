@@ -6,7 +6,7 @@ import {MockStore, provideMockStore} from '@ngrx/store/testing';
 import {By} from '@angular/platform-browser';
 import {AppState} from '../../../core/store/AppState';
 import {initialChatState} from '../../state/chat.state';
-import {selectUserName} from '../../state/hat.selectors';
+import {selectUserName} from '../../state/chat.selectors';
 
 describe('ChatHomeComponent', () => {
   let component: ChatHomeComponent;
