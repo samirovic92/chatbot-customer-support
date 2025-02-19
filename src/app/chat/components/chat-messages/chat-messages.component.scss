@@ -33,6 +33,10 @@
   padding: 8px 8px 18px;
   margin-top: 15px;
 
+  @media (max-width: 768px) {
+    min-width: 50%;
+  }
+
   &.user {
     background: #c5cae9;
     margin-left: auto;
