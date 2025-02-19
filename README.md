@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.7. I use framework [Ngrx](https://ngrx.io/docs) for state management, [Angular material](https://material.angular.io/)  for UI component infrastructure.
 
+The project is hosted in [Firebase](https://firebase.google.com/) using [github Actions]().
+
+To access to chatbot in prod (firebase url)  you can use one of the following url : [chatbot-1](https://chatbot-customer-support-85997.web.app/) or [chatbot-2](https://chatbot-customer-support-85997.firebaseapp.com/)
+
 ## Development server
 
 To start a local development server, run:

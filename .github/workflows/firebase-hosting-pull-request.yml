@@ -2,6 +2,7 @@
 name: Deploy to Firebase Hosting on PR
 
 on: pull_request
+
 permissions:
   checks: write
   contents: read
@@ -11,12 +12,19 @@ jobs:
   build_and_preview:
     if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 22.x ]
     steps:
-      - uses: actions/checkout@v4
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{
-            secrets.FIREBASE_SERVICE_ACCOUNT_CHATBOT_CUSTOMER_SUPPORT_85997 }}
-          projectId: chatbot-customer-support-85997
+          node-version: ${{ matrix.node-version }}
+      - name: Install dependencies
+        run: npm ci
+      - name: build project
+        run: npm run build -- --configuration production
+      - name: Run unit tests
+        run: npm test
