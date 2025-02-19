@@ -5,7 +5,9 @@
 <div class="flex-center">
 
   <mat-form-field appearance="outline" class="name-form">
-    <input matInput placeholder="Your name" [formControl]="usernameFormControl"/>
+    <input matInput placeholder="Your name"
+           [formControl]="usernameFormControl"
+           (keydown.enter)="startConversation()"/>
 
     <button mat-icon-button matSuffix
             class="btn-start"

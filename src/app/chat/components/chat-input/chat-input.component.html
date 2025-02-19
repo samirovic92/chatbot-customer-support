@@ -2,10 +2,9 @@
 
   <div class="input-area">
     <mat-form-field appearance="outline">
-      <input matInput placeholder="Enter you message" [formControl]="messageFormControl"/>
+      <input matInput placeholder="Enter you message" [formControl]="messageFormControl" (keydown.enter)="sendUserMessage()"/>
       <button mat-icon-button matSuffix
               class="btn-send-message"
-              (keydown.enter)="sendUserMessage()"
               (click)="sendUserMessage()"
               [disabled]="disableSendMessage()">
         <mat-icon>send</mat-icon>
