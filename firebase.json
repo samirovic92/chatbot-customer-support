@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/chatbot-customer-support",
+    "public": "dist/chatbot-customer-support/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
